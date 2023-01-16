@@ -9,49 +9,53 @@
             max-width: 1500px;
             width: 100%;
 
-            background-color: blue;
+            background-image: url("https://ifh.cc/g/PXK8Ap.jpg");
             background-position: center;
             background-size: cover;
-            margin: 20px auto 20px auto;
+            margin: 50px auto 20px auto;
 
         }
         /*컴퓨터*/
         .Computer{
+            display: flex;
+            /*flex-direction: column;*/
+            justify-content: center;
+            /*align-items: center;*/
+            margin-top: 100px;
+            padding-top: 50px;
 
-            position: center;
+        }
+        .user{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 100px;
-            margin: 20px auto 20px auto;
+
+            margin-top: 70px;
 
         }
-
         /*유저*/
-        .Userbutton{
+        .User > button{
+
+            width: 100px;
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            margin-top: 50px;
 
-            margin-top: 100px;
-
-        }
-        .Userbutton>button{
-            width: 100px;
-            margin-left: 30px;
 
         }
+
+
 
         /*메세지창*/
         .msg {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+            color: white;
             font-size: 100px;
+            margin-bottom: 50px;
         }
+
 
     </style>
 </head>
@@ -65,12 +69,13 @@
         </div>
 
 <!--        유저-->
-        <div>
-            <div class="Userbutton">
-                <button type="button"><img width=100px src="https://ifh.cc/g/mtGs0O.png"></button>
-                <button type="button"><img width=100px src="https://ifh.cc/g/1Y0LPy.png"></button>
-                <button type="button"><img width=100px src="https://ifh.cc/g/Qqw7Qa.png"></button>
+        <div class="user">
+            <div>
+                <button type="button"><img width=150px  src="https://ifh.cc/g/mtGs0O.png"></button>
+                <button type="button"><img width=150px  src="https://ifh.cc/g/1Y0LPy.png"></button>
+                <button type="button"><img width=150px  src="https://ifh.cc/g/Qqw7Qa.png"></button>
             </div>
+
             <h1 class="msg" id="Usertext"> 이겼다 </h1>
         </div>
     </div>
