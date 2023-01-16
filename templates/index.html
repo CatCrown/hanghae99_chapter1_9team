@@ -1,8 +1,9 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <style>
         /*배경*/
         .back {
@@ -147,7 +148,7 @@
                 url: '/rsp',
                 data: {},
                 success: function (response) {
-                    let rows = response
+                    let rows = response['rsp']
                     for (let i = 0; i < rows.length; i++) {
                         let user_image = rows[i]['img_list_user']
                         let num_user = rows[i]['user_num']
@@ -185,9 +186,11 @@
 
     </script>
 
+
 </head>
 
 <body>
+<<<<<<< HEAD
 <!--    배경-->
 <div class="back">
     <!--        컴퓨터-->

@@ -1,9 +1,18 @@
 from flask import Flask, render_template, request, jsonify
-import random
 
 import certifi
 
 ca = certifi.where()
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  return render_template('index.html')
+
+if __name__ == '__main__':
+  app.run('0.0.0.0', port=5500, debug=True)
+
+import random
 
 app = Flask(__name__)
 
@@ -14,6 +23,7 @@ client = MongoClient(
 # client = MongoClient("mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.\
 # fc6zoao.mongodb.net/?retryWrites=true&w=majority")
 db = client.sparta
+
 
 # 이미지(주소)와 이미지 고유넘버를 한묶음으로 저장
 # d = {}
@@ -30,6 +40,7 @@ db = client.sparta
 #     doc = {'num_user': count + 1, 'img_list_user': keys[count]}
 #     count = count + 1
 #     db.rsp_user.insert_one(doc)
+
 
 
 @app.route('/')
@@ -52,6 +63,7 @@ def result_post():
 
     elif result_receive == 3:
         msg = '졌다'
+
     doc = {'win': win_receive, 'msg': msg}
     db.winner.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
@@ -61,7 +73,8 @@ def result_post():
 @app.route("/rsp", methods=["GET"])
 def rsp_get():
     rsp_list = list(db.rsp_user.find({}, {'_id': False}))
-    return jsonify({'buckets': rsp_list})
+
+    return jsonify({'rsp': rsp_list})
 
 
 # db(rsp_com)에서 image와 넘버 번호 리스트를 가져오고 랜덤으로 하나만 가져오기
@@ -72,5 +85,9 @@ def rsp_get_rand():
     return jsonify({'rsp_rand': rsp_ran_list})
 
 
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
+
+
+
