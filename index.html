@@ -1,27 +1,116 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JQuery 연습하고 가기!</title>
-    <!-- JQuery를 import 합니다 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Title</title>
+    <style>
+        /*배경*/
+        .back {
 
-    <style type="text/css">
-        div.question-box {
-            margin: 10px 0 20px 0;
+            max-height: 2000px;
+            height: 95%;
+            max-width: 1000px;
+            width: 95%;
+
+            background-image: url("https://ifh.cc/g/PXK8Ap.jpg");
+            background-position: center;
+            background-size: cover;
+            margin: 50px auto 20px auto;
+
         }
 
-        div.question-box > div {
-            margin-top: 30px;
+        /*컴퓨터*/
+        .Computer {
+            display: flex;
+            /*flex-direction: column;*/
+            justify-content: center;
+            /*align-items: center;*/
+            margin-top: 100px;
+            padding-top: 50px;
+
         }
+
+        .user {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 70px;
+
+        }
+
+        /*유저*/
+        .User > button {
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+
+        }
+
+
+        /*메세지창*/
+        .msg {
+            color: white;
+            font-size: 100px;
+            margin-bottom: 50px;
+        }
+
+        .WinLose {
+            font-color: red;
+
+        }
+
+        .table {
+            width: 95%;
+            max-width: 1000px;
+            margin: auto;
+
+            text-align: center;
+
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            padding: 10px;
+            border: 1px solid;
+        }
+
 
     </style>
-    // 시작할 때 바로 가위바위보 화면이 보여질 수 있도록
-    $(document).ready(function () {
-    listing_user();
-    listing_com();
-    });
+
     <script>
+        let date = new Date();
+
+        function R1() {
+            $.ajax({
+                type: "GET",
+                url: "",
+                data: {},
+                success: function (response) {
+                    let rows = response['']
+                    console.log(date)
+
+                }
+            })
+        }
+
+
+
+        // 시작할 때 바로 가위바위보 화면이 보여질 수 있도록
+        $(document).ready(function () {
+            listing_user();
+            listing_com();
+
+            //시작할 때 가위바위보 history 바로 띄워주기
+            show();
+        });
+
         // 컴퓨터와 유저의 가위,바위,보 각각의 넘버 비교
         // 이기면 p값에 2, 지면 p값에 3, 비기면 p값에 1을 부여
         function answer(num_com, num_user) {
@@ -52,73 +141,179 @@
                 }
             }
         }
-       // answer에서 win_count와 p값을 받고 @app.return_post로 전달
-        function result(p,win_count) {
+
+        // answer에서 win_count와 p값을 받고 @app.return_post로 전달
+        function result(p, win_count) {
             $.ajax({
                 type: 'POST',
                 url: '/rsp_log',
-                data: {win_give: win_count,result_give:p},
+                data: {win_give: win_count, result_give: p},
                 success: function (response) {
                     alert(response['msg'])
                     //window.location.reload()
 
-                    }
-                });
+                }
+            });
         }
 
-     //db(rsp_user)에서 image와 넘버 번호 모음을 가져온다
-            function listing_user() {
-                //$('#cards-box').empty()
-                $.ajax({
-                    type: 'GET',
-                    url: '/rsp',
-                    data: {},
-                    success: function (response) {
-                        let rows = response['rsp']
-                        for (let i = 0; i < rows.length; i++) {
-                            let image = rows[i]['img']
-                            let num_user = rows[i]['num']
-
-
-                        }
-                    }
-                })
-            }
-   //db(rsp_com)에서 image와 넘버 번호를 가져온다
-            function listing_com() {
-                //$('#cards-box').empty()
-                $.ajax({
-                    type: 'GET',
-                    url: '/rsp/random',
-                    data: {},
-                    success: function (response) {
-                        let rows = response['rsp_rand']
-
-                        let image = rows['img']
-                        let num_com = rows['num']
+        //db(rsp_user)에서 image와 넘버 번호 모음을 가져온다
+        function listing_user() {
+            //$('#cards-box').empty()
+            $.ajax({
+                type: 'GET',
+                url: '/rsp',
+                data: {},
+                success: function (response) {
+                    let rows = response['rsp']
+                    for (let i = 0; i < rows.length; i++) {
+                        let image = rows[i]['img']
+                        let num_user = rows[i]['num']
 
 
                     }
-                })
+                }
+            })
+        }
+
+        //db(rsp_com)에서 image와 넘버 번호를 가져온다
+        function listing_com() {
+            //$('#cards-box').empty()
+            $.ajax({
+                type: 'GET',
+                url: '/rsp/random',
+                data: {},
+                success: function (response) {
+                    let rows = response['rsp_rand']
+
+                    let image = rows['img']
+                    let num_com = rows['num']
+
+
+                }
+            })
+        }
+
+/* 헷갈려서 주석처리
+        // 가위바위보 기록
+        function history() {
+            $.ajax({
+                type: "GET",
+                url: "rsp/history",
+                data: {},
+                success: function (response) {
+                    let rows = response['history']
+                    for (let i = 0; i < rows.length; i++) {
+                        let num = rows[i]['num']
+                        let com = rows[i]['com']
+                        let user = rows[i]['user']
+                        let result = rows[i]['result']
+
+                        let temp_html = ``
+
+                        temp_html = `<div class="con" style="display:table; width:800px;">
+                                        <div style="display:table-row">
+
+                                            <!-- 몇회차 -->
+                                            <div class ="num" id="num" style="display:table-cell">${num}</div>
+                                            <!-- 유저가 낸 것 -->
+                                            <div class ="userdata" id="userdata" style="display:table-cell">${user}</div>
+                                            <!-- 컴퓨터가 낸 것 -->
+                                            <div class ="comdata" id="comdata" style="display:table-cell">${com}</div>
+                                            <!-- 결과 낸 것 -->
+                                            <div class ="resultdata" id="resultdata" style="display:table-cell">${result}</div>
+                                        </div>
+                                     </div>`
+
+                        // <p>${num} 연승중입니다!</p>
+
+                        $('#history_list').append(temp_html)
+                    }
+                }
+            })
+        }
+        */
+
+
+        // 가위바위보 기록 조회
+    function show() {
+        $.ajax({
+            type: 'GET',
+            url: '/show',
+            data: {},
+            success: function (response) {
+                let rows = response['abc']
+                for (let i = 0; i < rows.length; i++) {
+                    //회차
+                    let num = rows[i]['num']
+                    //유저가 낸 것
+                    let user = rows[i]['user']
+                    // 컴퓨터가 낸 것
+                    let com = rows[i]['com']
+                    // 결과
+                    let result = rows[i]['result']
+
+                    let temp_html = ``
+                    temp_html = `<tr>
+                                         <td>${num}</td>
+                                         <td>${user}</td>
+                                         <td>${com}</td>
+                                         <td>${result}</td>
+                                 </tr>`
+
+                    $('#history-box').append(temp_html)
+                }
+
             }
+        });
+    }
+
+
+
+
+
+
+
 
     </script>
-
 </head>
-<body>
-<h1>JQuery+Ajax의 조합을 연습하자!</h1>
 
-<hr/>
+    <body>
+    <!--    배경-->
+    <div class="back">
+        <!--        컴퓨터-->
+        <div class="Computer">
+            <img id="ComImg" width="300" src="https://ifh.cc/g/mtGs0O.png."/>
+        </div>
 
-<div class="question-box">
-    <h2>3. 르탄이 API를 이용하기!</h2>
-    <p>아래를 르탄이 사진으로 바꿔주세요</p>
-    <p>업데이트 버튼을 누를 때마다 지웠다 새로 씌여져야 합니다.</p>
-    <button onclick="answer(${num_com,num_user})">르탄이 나와</button>
-    <div>
-        <img id="img-rtan" width="300" src="http://spartacodingclub.shop/static/images/rtans/SpartaIcon11.png"/>
-        <h1 id="text-rtan">나는 ㅇㅇㅇ하는 르탄이!</h1>
+        <!--        유저-->
+        <div class="user">
+            <div>
+                <button onclick="R1()" type="button"><img width=100px src="https://ifh.cc/g/mtGs0O.png"></button>
+                <button onclick="R2()" type="button"><img width=100px src="https://ifh.cc/g/1Y0LPy.png"></button>
+                <button onclick="R3()" type="button"><img width=100px src="https://ifh.cc/g/Qqw7Qa.png"></button>
+            </div>
+            <!--max-width=150px-->
+<!--            <h1 class="msg" id="Usertext"> 이겼다 </h1>-->
+        </div>
     </div>
-</div>
+
+    <!--    https://ifh.cc/g/mtGs0O.png 가위-->
+    <!--https://ifh.cc/g/1Y0LPy.png 바위-->
+    <!--https://ifh.cc/g/Qqw7Qa.png 보-->
+
+    <table class="table">
+        <thead id="history-box">
+        <tr>
+            <td>회차</td>
+            <td>내가 낸 것</td>
+            <td>컴퓨터가 낸 것</td>
+            <td class="WinLose">결과</td>
+        </tr>
+        <tr>
+            <!-- 여기에 temp_html 이 붙음 -->
+        </tr>
+        </thead>
+    </table>
+
 </body>
 </html>
