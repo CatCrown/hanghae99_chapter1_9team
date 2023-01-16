@@ -1,26 +1,39 @@
 from flask import Flask, render_template, request, jsonify
+<<<<<<<<< Temporary merge branch 1
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  return render_template('index.html')
+
+if __name__ == '__main__':
+  app.run('0.0.0.0', port=5500, debug=True)
+=========
 import random
 
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.fc6zoao.mongodb.net/?retryWrites=true&w=majority')
+
+client = MongoClient(
+    'mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.fc6zoao.mongodb.net/?retryWrites=true&w=majority')
 # client = MongoClient("mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.\
 # fc6zoao.mongodb.net/?retryWrites=true&w=majority")
 db = client.sparta
 
+
 @app.route('/')
 def home():
-   return render_template('index.html')
+    return render_template('index.html')
 
-<<<<<<< HEAD
+
 # log값 받기 (win_give는 이긴 횟수, result_give는 승,무,패 구별하는 변수
 # result_give가 1은 비긴 것 2는 이긴 것 3은 진 것
 @app.route("/rsp_log", methods=["POST"])
 def result_post():
     win_receive = request.form['win_give']
     result_receive = request.form['result_give']
-    msg=''
+    msg = ''
     if result_receive == 1:
         msg = '비겼다'
 
@@ -34,11 +47,12 @@ def result_post():
     db.winner.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
-#db(rsp_user)에서 image와 넘버 번호 리스트를 가져온다
+
+# db(rsp_user)에서 image와 넘버 번호 리스트를 가져온다
 @app.route("/rsp", methods=["GET"])
 def rsp_get():
     rsp_list = list(db.rsp_user.find({}, {'_id': False}))
-    return jsonify({'buckets': rsp_list})
+
 
 @app.route("/rsp", methods=["POST"])
 def rsp():
@@ -52,7 +66,6 @@ def rsp():
 
     # 결과 result_give로 받아오기
     result_receive = request.form['result_give']
-
 
     # 히스토리 조회부분
     history_list = list(db.rsptest.find({}, {'_id': False}))
@@ -85,7 +98,6 @@ def history():
 
 
 
-
 # db(rsp_com)에서 image와 넘버 번호 리스트를 가져오고 랜덤으로 하나만 가져오기
 @app.route("/rsp/random", methods=["GET"])
 def rsp_get_rand():
@@ -113,4 +125,5 @@ def result_delete():
 
 
 if __name__ == '__main__':
-   app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
+>>>>>>>>> Temporary merge branch 2
