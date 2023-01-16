@@ -84,10 +84,15 @@
         function R1() {
             $.ajax({
                 type: "GET",
-                url: "",
+                url: "/db.py",
                 data: {},
                 success: function (response) {
-                    let rows = response['']
+                    // let rows = response['']
+                    //
+                    // let temp_html = `<tr>
+                    //                     <td>현재시간 추가</td>
+                    //                     <td class="WinLose">승부</td>
+                    //                 </tr>`
                     console.log(date)
 
                 }
