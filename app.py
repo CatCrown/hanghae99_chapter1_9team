@@ -42,23 +42,23 @@ db = client.sparta
 
 # log값 받기 (win_give는 이긴 횟수, result_give는 승,무,패 구별하는 변수
 # result_give가 1은 비긴 것 2는 이긴 것 3은 진 것
-@app.route("/rsp_log", methods=["POST"])
-def result_post():
-    win_receive = request.form['win_give']
-    result_receive = request.form['result_give']
-    msg = ''
-    if result_receive == 1:
-        msg = '비겼다'
-
-    elif result_receive == 2:
-        msg = '이겼다'
-
-    elif result_receive == 3:
-        msg = '졌다'
-
-    doc = {'win': win_receive, 'msg': msg}
-    db.winner.insert_one(doc)
-    return jsonify({'msg': '등록 완료!'})
+#@app.route("/rsp_log", methods=["POST"])
+# def result_post():
+#     win_receive = request.form['win_give']
+#     result_receive = request.form['result_give']
+#     msg = ''
+#     if result_receive == 1:
+#         msg = '비겼다'
+#
+#     elif result_receive == 2:
+#         msg = '이겼다'
+#
+#     elif result_receive == 3:
+#         msg = '졌다'
+#
+#     doc = {'win': win_receive, 'msg': msg}
+#     db.winner.insert_one(doc)
+#     return jsonify({'msg': '등록 완료!'})
 
 
 # db(rsp_user)에서 image와 넘버 번호 리스트를 가져온다

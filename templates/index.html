@@ -1,7 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <title>Title</title>
 
     <style>
@@ -91,10 +99,12 @@
     <!--     시작할 때 바로 가위바위보 화면이 보여질 수 있도록-->
 
     <script>
-        $(document).ready(function () {
-            listing_user();
+         $(document).ready(function () {
+             console.log('안녕')
+             listing_user();
             listing_com();
-        });
+          });
+
         // 컴퓨터와 유저의 가위,바위,보 각각의 넘버 비교
         // 이기면 p값에 2, 지면 p값에 3, 비기면 p값에 1을 부여
         function answer(num_com, num_user) {
@@ -105,36 +115,36 @@
                 if (num_com[i] == num_user[i]) {
                     p = 1;
                     win_count = 0;
-                    result(${p,win_count});
+                    //<h1 className="msg" id="Usertext"> 이겼다 </h1>
                 } else if (num_user[i] == 1 && num_com[i] == 3) {
                     p = 2;
                     win_count++;
-                    result(${p,win_count});
+                    //<h1 className="msg" id="Usertext"> 이겼다 </h1>
                 } else if (num_user[i] == 2 && num_com[i] == 1) {
                     p = 2;
                     win_count++;
-                    result(${p,win_count});
+                    result(p,win_count);
                 } else if (num_user[i] == 3 && num_com[i] == 2) {
                     p = 2;
                     win_count++;
-                    result(${p,win_count});
+                    result(p,win_count);
                 } else {
                     p = 3;
                     win_count = 0;
-                    result(${p,win_count});
+                    result(p,win_count);
                 }
             }
         }
 
         // answer에서 win_count와 p값을 받고 @app.return_post로 전달
-        function result(p, win_count) {
-            $.ajax({
-                type: 'POST',
-                url: '/rsp_log',
-                data: {win_give: win_count, result_give: p},
-                success: function (response) {
-                    alert(response['msg'])
-                    //window.location.reload()
+        // function result(p, win_count) {
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/rsp_log',
+        //         data: {win_give: win_count, result_give: p},
+        //         success: function (response) {
+        //             alert(response['msg'])
+        //             //window.location.reload()
 
                 }
             });
@@ -148,19 +158,20 @@
                 url: '/rsp',
                 data: {},
                 success: function (response) {
-                    let rows = response['rsp']
-                    for (let i = 0; i < rows.length; i++) {
-                        let user_image = rows[i]['img_list_user']
-                        console.log(user_image)
-                        let num_user = rows[i]['user_num']
-                        let temp_html =``
-                    temp_html= `<button onClick="answer(${num_user[i]})" type="button"><img width=100px src=${user_image[i]}></button>`
+                    console.log(response)
+                    // let rows = response['rsp']
+                    // for (let i = 0; i < rows.length; i++) {
+                    //     let user_image = rows[i]['img_list_user']
+                    //     console.log(user_image)
+                    //     let num_user = rows[i]['user_num']
+                    //     let temp_html =``
+                    // temp_html= `<button onClick="answer(${num_user[i]})" type="button"><img width=100px src=${user_image[i]}></button>`
+                    //
+                    //     $('#rsp_user').append(temp_html)
 
-                        $('#rsp_user').append(temp_html)
 
 
-
-                    }
+                    //}
                 }
             })
         }
@@ -202,9 +213,7 @@
     <!--        유저-->
     <div class="user" id="rsp_user">
         <div>
-            <button onclick="answer(${num_user[0]})" type="button"> <img width=100px src=$({user_image[0]})></button>
-            <button onclick="answer(${num_user[1]})" type="button"> <img width=100px src=$({user_image[0]})></button>
-            <button onclick="answer(${num_user[2]})" type="button"> <img width=100px src=$({user_image[0]})></button>
+
         </div>
         <!--max-width=150px-->
         <h1 class="msg" id="Usertext"> 이겼다 </h1>
