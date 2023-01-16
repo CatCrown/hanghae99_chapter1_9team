@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, jsonify, random
+from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 import random
-from pymongo import MongoClient
 import certifi
 ca = certifi.where()
 
+from pymongo import MongoClient
 client = MongoClient(
     'mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.fc6zoao.mongodb.net/?retryWrites=true&w=majority')
 
@@ -41,6 +41,8 @@ def index():
 @app.route("/rsp", methods=["GET"])
 def rsp_get():
     rsp_list = list(db.rsp_user.find({}, {'_id': False}))
+    print(rsp_list)
+    return jsonify({'rsp': rsp_list})
 
 
 # @app.route("/rsp", methods=["POST"])
