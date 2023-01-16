@@ -6,8 +6,11 @@
     <style>
         /*배경*/
         .back{
-            max-width: 1500px;
-            width: 100%;
+
+            max-height: 2000px;
+            height: 95%;
+            max-width: 1000px;
+            width: 95%;
 
             background-image: url("https://ifh.cc/g/PXK8Ap.jpg");
             background-position: center;
@@ -37,13 +40,11 @@
         /*유저*/
         .User > button{
 
-            width: 100px;
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
             margin-top: 50px;
-
 
         }
 
@@ -55,9 +56,44 @@
             font-size: 100px;
             margin-bottom: 50px;
         }
+        .WinLose{
+            font-color:red;
+
+        }
+        .table{
+            width: 95%;
+            max-width: 1000px;
+            margin: auto;
+
+            text-align: center;
+
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        td,
+        th {
+            padding: 10px;
+            border: 1px solid;}
 
 
     </style>
+
+    <script>
+        let date = new Date();
+
+        function R1() {
+            $.ajax({
+                type: "GET",
+                url: "",
+                data: {},
+                success: function (response) {
+                    let rows = response['']
+                    console.log(date)
+
+                }
+            })
+        }
+    </script>
 </head>
 
 <body>
@@ -71,11 +107,11 @@
 <!--        유저-->
         <div class="user">
             <div>
-                <button type="button"><img width=150px  src="https://ifh.cc/g/mtGs0O.png"></button>
-                <button type="button"><img width=150px  src="https://ifh.cc/g/1Y0LPy.png"></button>
-                <button type="button"><img width=150px  src="https://ifh.cc/g/Qqw7Qa.png"></button>
+                <button onclick="R1" type="button"><img width=100px src="https://ifh.cc/g/mtGs0O.png"></button>
+                <button onclick="R2"type="button"><img width=100px  src="https://ifh.cc/g/1Y0LPy.png"></button>
+                <button onclick="R3"type="button"><img width=100px  src="https://ifh.cc/g/Qqw7Qa.png"></button>
             </div>
-
+<!--max-width=150px-->
             <h1 class="msg" id="Usertext"> 이겼다 </h1>
         </div>
     </div>
@@ -84,6 +120,16 @@
 <!--https://ifh.cc/g/1Y0LPy.png 바위-->
 <!--https://ifh.cc/g/Qqw7Qa.png 보-->
 
+    <table class="table">
+        <thead>
+            <tr>
+                <td>현재시간 추가</td>
+                <td class="WinLose">승부</td>
+            </tr>
+        </thead>
+        <tbody id="names-q1">
+        </tbody>
+    </table>
 
 </body>
 </html>
