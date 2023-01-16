@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import random
 
+import certifi
+ca = certifi.where()
+
 app = Flask(__name__)
 
 from pymongo import MongoClient
@@ -8,6 +11,23 @@ client = MongoClient('mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.fc6
 # client = MongoClient("mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.\
 # fc6zoao.mongodb.net/?retryWrites=true&w=majority")
 db = client.sparta
+
+# 이미지(주소)와 이미지 고유넘버를 한묶음으로 저장
+d= {}
+d['https://ifh.cc/g/mtGs0O.png']=1
+d['https://ifh.cc/g/1Y0LPy.png']=2
+d['https://ifh.cc/g/Qqw7Qa.png']=3
+keys = list(d.keys())
+count = 0;
+for i in range(3):
+
+    doc ={'num_com' : count+1 , 'img_list_com': keys[count] }
+    count = count + 1
+    db.rsp_com.insert_one(doc)
+
+    doc = {'num_user': count + 1, 'img_list_user': keys[count]}
+    count = count + 1
+    db.rsp_user.insert_one(doc)
 
 @app.route('/')
 def home():
@@ -22,11 +42,11 @@ def result_post():
     result_receive = request.form['result_give']
     msg=''
     if result_receive == 1:
-          msg = '비겼다'
+        msg = '비겼다'
 
 
    elif result_receive == 2:
-                              msg = '이겼다'
+                            msg = '이겼다'
 
         elif result_reveive == 3:
             msg = '졌다'
@@ -38,6 +58,7 @@ def result_post():
 @app.route("/rsp", methods=["GET"])
 def rsp_get():
     rsp_list = list(db.rsp_user.find({}, {'_id': False}))
+    return jsonify({'buckets': rsp_list})
 =======
 @app.route("/rsp", methods=["POST"])
 def rsp():
@@ -103,3 +124,13 @@ def rsp_get_rand():
 
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
+=======
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  return render_template('index.html')
+
+if __name__ == '__main__':
+  app.run('0.0.0.0', port=5500, debug=True)
+>>>>>>> f1a42ec0fc68e5cad90674608d7142fcadec59c4
