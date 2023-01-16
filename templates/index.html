@@ -151,9 +151,10 @@
                     let rows = response['rsp']
                     for (let i = 0; i < rows.length; i++) {
                         let user_image = rows[i]['img_list_user']
+                        console.log(user_image)
                         let num_user = rows[i]['user_num']
                         let temp_html =``
-                    temp_html= '<button onClick="answer(${num_user[i]})" type="button"><img width=100px src=${user_image[i]}></button>'
+                    temp_html= `<button onClick="answer(${num_user[i]})" type="button"><img width=100px src=${user_image[i]}></button>`
 
                         $('#rsp_user').append(temp_html)
 
@@ -201,7 +202,7 @@
     <!--        유저-->
     <div class="user" id="rsp_user">
         <div>
-             <button onclick="answer(${num_user[0]})" type="button"> <img width=100px src=$({user_image[0]})></button>
+            <button onclick="answer(${num_user[0]})" type="button"> <img width=100px src=$({user_image[0]})></button>
             <button onclick="answer(${num_user[1]})" type="button"> <img width=100px src=$({user_image[0]})></button>
             <button onclick="answer(${num_user[2]})" type="button"> <img width=100px src=$({user_image[0]})></button>
         </div>

@@ -1,31 +1,22 @@
 from flask import Flask, render_template, request, jsonify
-
-import certifi
-
-ca = certifi.where()
 app = Flask(__name__)
+import random
+import certifi
+ca = certifi.where()
+
 
 @app.route('/')
 def index():
   return render_template('index.html')
 
-if __name__ == '__main__':
-  app.run('0.0.0.0', port=5500, debug=True)
-
-import random
-
-app = Flask(__name__)
-
 from pymongo import MongoClient
-
 client = MongoClient(
     'mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.fc6zoao.mongodb.net/?retryWrites=true&w=majority')
-# client = MongoClient("mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.\
-# fc6zoao.mongodb.net/?retryWrites=true&w=majority")
+
 db = client.sparta
 
 
-# 이미지(주소)와 이미지 고유넘버를 한묶음으로 저장
+#이미지(주소)와 이미지 고유넘버를 한묶음으로 저장
 # d = {}
 # d['https://ifh.cc/g/mtGs0O.png'] = 1
 # d['https://ifh.cc/g/1Y0LPy.png'] = 2
@@ -33,13 +24,13 @@ db = client.sparta
 # keys = list(d.keys())
 # count = 0;
 # for i in range(3):
-#     doc = {'num_com': count + 1, 'img_list_com': keys[count]}
-#     count = count + 1
-#     db.rsp_com.insert_one(doc)
+#   doc = {'num_com': count + 1, 'img_list_com': keys[count]}
+#   count = count + 1
+#   db.rsp_com.insert_one(doc)
 #
-#     doc = {'num_user': count + 1, 'img_list_user': keys[count]}
-#     count = count + 1
-#     db.rsp_user.insert_one(doc)
+#   doc = {'num_user': count + 1, 'img_list_user': keys[count]}
+#   count = count + 1
+#   db.rsp_user.insert_one(doc)
 
 
 
