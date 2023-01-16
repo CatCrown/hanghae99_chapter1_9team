@@ -4,9 +4,7 @@ import random
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://test:sparta@cluster0.2qwfec3.mongodb.net/Cluster0?retryWrites=true&w=majority')
-# client = MongoClient("mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.\
-# fc6zoao.mongodb.net/?retryWrites=true&w=majority")
+client = MongoClient("mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.fc6zoao.mongodb.net/?retryWrites=true&w=majority")
 db = client.sparta
 
 @app.route('/')
@@ -57,7 +55,19 @@ def rsp():
 
 @app.route("/rsp/history", methods=["GET"])
 def history():
+    # 기록 조회 부분
     history_list = list(db.rsptest.find({}, {'_id': False}))
+    return jsonify({'history': history_list})
+
+
+@app.route("/rsp/delete", methods=["GET"])
+def delete():
+    # 기록 조회 부분
+    history_list = list(db.rsptest.find({}, {'_id': False}))
+
+    # db.rsptest.deleteMany({})
+    db.rsptest.drop()
+
     return jsonify({'history': history_list})
 
 
