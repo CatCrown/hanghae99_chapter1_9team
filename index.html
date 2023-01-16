@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .ComputerImg{
+        .back{
+            max-width: 1500px;
+            width: 100%;
 
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-            margin-top: 100px;
+            background-color: blue;
+            background-position: center;
+            background-size: cover;
+            margin: 20px auto 20px auto;
 
         }
+        .Computer{
+
+            /*position: center;*/
+            /*display: flex;*/
+            /*flex-direction: column;*/
+            /*justify-content: center;*/
+            /*align-items: center;*/
+            /*margin: 100px;*/
+            margin: 20px auto 20px auto;
+
+        }
+
+
         .UserImg{
             display: flex;
             flex-direction: row;
@@ -23,20 +36,32 @@
             margin-top: 300px;
 
         }
+        .msg{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+
     </style>
 </head>
 <body>
-    <div class="ComputerImg">
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
+
+    <div class="back">
+        <div class="Computer">
+            <img id="ComImg" width="300" src="..."/>
+        </div>
+
+        <div>
+            <div class="UserImg" id="userbutton">
+                <button onclick="scissors" type="button"><img width=100px src="..."></button>
+                <button onclick="rock" type="button"><img width=100px src="..."></button>
+                <button onclick="cloth" type="button"><img width=100px src="..."></button>
+            </div>
+            <h1 class="msg" id="Usertext"> 이겼다 </h1>
+        </div>
 
     </div>
-    <div class="UserImg" id="userbutton">
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
-    </div>
-    <h1 id="msg">  이겼다 </h1>
+
 </body>
 </html>
