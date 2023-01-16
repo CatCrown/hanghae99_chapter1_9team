@@ -1,58 +1,68 @@
-import random
 from flask import Flask, render_template, request, jsonify
+import random
+
 app = Flask(__name__)
 
 from pymongo import MongoClient
-
-client = MongoClient('mongodb://test:sparta@ac-3zlcrwk-shard-00-00.v9nxihz.mongodb.net:27017,ac-3zlcrwk-shard-00-01.v9nxihz.mongodb.net:27017,ac-3zlcrwk-shard-00-02.v9nxihz.mongodb.net:27017/?ssl=true&replicaSet=atlas-106koo-shard-0&authSource=admin&retryWrites=true&w=majority', tlsCAFile=ca)
-db = client.dbsparta
+client = MongoClient('mongodb+srv://test:sparta@cluster0.2qwfec3.mongodb.net/Cluster0?retryWrites=true&w=majority')
+# client = MongoClient("mongodb+srv://HANGHAE99_CHAPTER1_9TEAM:sparta@cluster0.\
+# fc6zoao.mongodb.net/?retryWrites=true&w=majority")
+db = client.sparta
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+   return render_template('index.html')
 
 @app.route("/rsp", methods=["POST"])
-def bucket_post():
-    bucket_receive = request.form['bucket_give']
-    # 여러개 찾기 - 예시 ( _id 값은 제외하고 출력)
-    bucket_list = list(db.bucket.find({}, {'_id': False}))
-    count = len(bucket_list)+1
+def rsp():
+    # 이게 버튼 눌렀을 때 일어나야 되는 일
 
-    doc = {'num': count,'bucket': bucket_receive, 'done': 0}
-    db.bucket.insert_one(doc)
-    return jsonify({'msg': '등록 완료!'})
+    # 유저가 낸 것 user_give로 받아오기
+    user_receive = request.form['user_give']
 
-@app.route("/bucket/done", methods=["POST"])
-def bucket_done():
-    num_receive = request.form['num_give'] #문자열로 바뀌어서, 밑에 숫자로 바꿈
-    db.bucket.update_one({'num': int(num_receive)}, {'$set': {'done': 1}})
-    return jsonify({'msg': '버킷 완료!'})
+    # 컴퓨터가 낸 것 com_give로 받아오기
+    com_receive = request.form['com_give']
 
-@app.route("/bucket/undone", methods=["POST"])
-def bucket_undone():
-    num_receive = request.form['num_give'] #문자열로 바뀌어서, 밑에 숫자로 바꿈
-    db.bucket.update_one({'num': int(num_receive)}, {'$set': {'done': 0}})
-    return jsonify({'msg': '실행 취소!'})
+    # 결과 result_give로 받아오기
+    result_receive = request.form['result_give']
 
 
-@app.route("/rsp", methods=["GET"])
-def rsp_get():
-    rsp_list = list(db.rsp_user.find({}, {'_id': False}))
+    # 히스토리 조회부분
+    history_list = list(db.rsptest.find({}, {'_id': False}))
+    count = len(history_list) + 1
 
-    return jsonify({'rsp': rsp_list})
+    doc = {
+        # 몇회차인지
+        'num': count,
 
-@app.route("/rsp/random", methods=["GET"])
-def rsp_get_rand():
-    rsp_list = list(db.rsp_com.find({}, {'_id': False}))
-    rsp_ran_list = random.choice(rsp_list)
-    return jsonify({'rsp_rand': rsp_ran_list})
+        # 유저가 낸 것
+        'user': user_receive,
 
-@app.route("/bucket/delete", methods=["POST"])
-def bucket_delete():
-    num_receive = request.form['num_give']
-    db.bucket.delete_one({'num': int(num_receive)})
-    return jsonify({'msg': "삭제 완료"})
+        # 컴퓨터가 낸 것
+        'com': com_receive,
+
+        # 결과
+        'result': result_receive
+    }
+
+    # 데이터를 rsptest db에 삽입
+    db.rsptest.insert_one(doc)
+
+
+
+
+
+    return jsonify({'msg':'처음 조회'})
+
+
+@app.route("/rsp/history", methods=["GET"])
+def history():
+    history_list = list(db.rsptest.find({}, {'_id': False}))
+    return jsonify({'history': history_list})
+
+
+
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+   app.run('0.0.0.0', port=5000, debug=True)
