@@ -42,17 +42,17 @@
                                         <div style="display:table-row">
 
                                             <!-- 몇회차 -->
-                                            <div class ="num" style="display:table-cell">${num}</div>
+                                            <div class ="num" id="num" style="display:table-cell">${num}</div>
                                             <!-- 유저가 낸 것 -->
-                                            <div class ="userdata" style="display:table-cell">${user}</div>
+                                            <div class ="userdata" id="userdata" style="display:table-cell">${user}</div>
                                             <!-- 컴퓨터가 낸 것 -->
-                                            <div class ="comdata" style="display:table-cell">${com}</div>
+                                            <div class ="comdata" id="comdata" style="display:table-cell">${com}</div>
                                             <!-- 결과 낸 것 -->
-                                            <div class ="resultdata" style="display:table-cell">${result}</div>
+                                            <div class ="resultdata" id="resultdata" style="display:table-cell">${result}</div>
                                         </div>
                                      </div>`
 
-                        // 연승처리 어케하지
+                        // 전에 온도api처럼 처리할지
                         // <p>${num} 연승중입니다!</p>
 
                         $('#history_list').append(temp_html)
@@ -91,21 +91,28 @@
         ------------------------------- &nbsp
     </div>
 
+
+    <div></div>
+
+
+
+
+
+
     <div class="con" style="display:table; width:800px;">
         <div style="display:table-row">
-            <div class ="A" style="display:table-cell">회차</div>
-            <div class ="A" style="display:table-cell">유저가 낸 것</div>
-            <div class ="B" style="display:table-cell">컴퓨터가 낸 것</div>
-            <div class ="C" style="display:table-cell">결과</div>
+            <div class ="a" style="display:table-cell">회차</div>
+            <div class ="b" style="display:table-cell">유저가 낸 것</div>
+            <div class ="c" style="display:table-cell">컴퓨터가 낸 것</div>
+            <div class ="d" style="display:table-cell">결과</div>
         </div>
     </div>
     <div id="history_list">
-
+        <!-- 여기에 temp_html 이 붙음 -->
     </div>
-    <button onclick="btn1()">가위</button>
+    <button onclick="rsp()">가위</button>
     <button onclick="btn2()">바위</button>
     <button onclick="btn3()">보</button>
-
 
 </div>
 </body>
