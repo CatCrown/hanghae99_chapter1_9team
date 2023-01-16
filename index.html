@@ -28,12 +28,7 @@
             margin-top: 100px;
             padding-top: 50px;
 
-        <
-        style type
-
-        =
-        "text/css"
-        >
+        <style type="text/css">
         div.question-box {
             margin: 10px 0 20px 0;
         }
@@ -156,20 +151,10 @@
                     for (let i = 0; i < rows.length; i++) {
                         let user_image = rows[i]['img_list_user']
                         let num_user = rows[i]['user_num']
-                        let temp_html = `<div class="col">
-                                <div class="card h-100">
-                                <img src="${image}"
-                                class="card-img-top">
-                                <div class="card-body">
-                                <h5 class="card-title">"${title}"</h5>
-                                <p class="card-text">"${desc}"</p>
-                                <p>"${star_image}"</p>
-                                <p class="mycomment">"${comment}"</p>
-                                <button onclick="delete_movie(${num})" >삭제</button>
-                                </div>
-                                </div>
-                                </div>`
-                        $('#cards-box').append(temp_html)
+                        let temp_html =``
+                    temp_html= '<button onClick="answer(${num_user[i]})" type="button"><img width=100px src=$({user_image[i]})></button>'
+
+                        $('#rsp_user').append(temp_html)
 
 
 
@@ -190,8 +175,6 @@
 
                     let image = rows['img']
                     let num_com = rows['num_com']
-                    let temp_html=''
-                    temp_html= '<button onClick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})></button>'
                     $('#ComImg').src = image
 
                 }
@@ -199,8 +182,7 @@
         }
 
         let date = new Date();
-let temp_html=''
-        <button onClick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})></button>
+
     </script>
 
 </head>
@@ -216,9 +198,9 @@ let temp_html=''
     <!--        유저-->
     <div class="user" id="rsp_user">
         <div>
-            <button onclick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})></button>
-            <button onclick="answer(${num_user[1]})" type="button"><img width=100px src=$({user_image[0]})></button>
-            <button onclick="answer(${num_user[2]})" type="button"><img width=100px src=$({user_image[0]})></button>
+            // <button onclick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})></button>
+            //<button onclick="answer(${num_user[1]})" type="button"><img width=100px src=$({user_image[0]})></button>
+            //<button onclick="answer(${num_user[2]})" type="button"><img width=100px src=$({user_image[0]})></button>
         </div>
         <!--max-width=150px-->
         <h1 class="msg" id="Usertext"> 이겼다 </h1>
