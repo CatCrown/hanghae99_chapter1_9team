@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        /*배경*/
         .back{
             max-width: 1500px;
             width: 100%;
@@ -14,54 +15,70 @@
             margin: 20px auto 20px auto;
 
         }
+        /*컴퓨터*/
         .Computer{
 
-            /*position: center;*/
-            /*display: flex;*/
-            /*flex-direction: column;*/
-            /*justify-content: center;*/
-            /*align-items: center;*/
-            /*margin: 100px;*/
+            position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 100px;
             margin: 20px auto 20px auto;
 
         }
 
-
-        .UserImg{
+        /*유저*/
+        .Userbutton{
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
 
-            margin-top: 300px;
+            margin-top: 100px;
 
         }
-        .msg{
+        .Userbutton>button{
+            width: 100px;
+            margin-left: 30px;
+
+        }
+
+        /*메세지창*/
+        .msg {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
             font-size: 100px;
+        }
 
     </style>
 </head>
-<body>
 
+<body>
+<!--    배경-->
     <div class="back">
+<!--        컴퓨터-->
         <div class="Computer">
-            <img id="ComImg" width="300" src="..."/>
+            <img id="ComImg" width="300" src="https://ifh.cc/g/mtGs0O.png."/>
         </div>
 
+<!--        유저-->
         <div>
-            <div class="UserImg" id="userbutton">
-                <button onclick="scissors" type="button"><img width=100px src="..."></button>
-                <button onclick="rock" type="button"><img width=100px src="..."></button>
-                <button onclick="cloth" type="button"><img width=100px src="..."></button>
+            <div class="Userbutton">
+                <button type="button"><img width=100px src="https://ifh.cc/g/mtGs0O.png"></button>
+                <button type="button"><img width=100px src="https://ifh.cc/g/1Y0LPy.png"></button>
+                <button type="button"><img width=100px src="https://ifh.cc/g/Qqw7Qa.png"></button>
             </div>
             <h1 class="msg" id="Usertext"> 이겼다 </h1>
         </div>
-
     </div>
+
+<!--    https://ifh.cc/g/mtGs0O.png 가위-->
+<!--https://ifh.cc/g/1Y0LPy.png 바위-->
+<!--https://ifh.cc/g/Qqw7Qa.png 보-->
+
 
 </body>
 </html>
