@@ -13,7 +13,6 @@
 
 <head>
     <meta charset="UTF-8">
-<<<<<<<<< Temporary merge branch 1
     <title>Title</title>
     <style>
 
@@ -128,22 +127,33 @@
             margin-top: 10%;
         }
 
-        }
+
+
         /*유저*/
         .User > button {
 
         }
-        .UserImg{
+        .UserImg {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            margin-top: 50px;
+
 
             margin-top: 300px;
+        }
 
+        /*메세지창*/
+        .msg {
+            color: white;
+            font-size: 100px;
+            margin-bottom: 50px;
         }
         .WinLose{
             font-color:red;
+
+        }
 
         .table {
            /* 버튼을 누르기 전에 히스토리가 안 보이게*/
@@ -163,6 +173,7 @@
             border: 2px solid white;
             border-collapse: collapse;
         }
+
         td,
         th {
             padding: 10px;
@@ -276,65 +287,65 @@
             })
         }
 
+        let date = new Date();
+let temp_html=`
+        <button onclick="answer(${num_user[0]})" type="button"><img width=100px; src=$({user_image[0]})></button>`
     </script>
+
 </head>
 
-<body>
-<div class="start">
-    <button onclick="open_game()" id="hide" type="button" class="btn btn-outline-danger">게임 시작하기!</button>
-</div>
-
-<!--    배경-->
-<div class="back">
-    <!--        컴퓨터-->
-    <div class="Computer" >
-        <img id="ComImg" width="300" src="https://ifh.cc/g/mtGs0O.png."/>
-    </div>
-<div class="back" id="game-box">
-    <!--        컴퓨터-->
-    <!--유저와 컴퓨터의 아이템이 back 밖으로 나가지 않도록 설정-->
-    <div class="playgame">
-        <div class="Computer">
-            <img id="ComImg" width="100%" src="https://ifh.cc/g/mtGs0O.png."/>
+    <body>
+        <div class="start">
+            <button onclick="open_game()" id="hide" type="button" class="btn btn-outline-danger">게임 시작하기!</button>
         </div>
 
-    <!--        유저-->
-    <div class="user" id="rsp_user">
-        <div>
-            <button onclick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})></button>
-            <button onclick="answer(${num_user[1]})" type="button"><img width=100px src=$({user_image[0]})></button>
-            <button onclick="answer(${num_user[2]})" type="button"><img width=100px src=$({user_image[0]})></button>
+        <!--    배경-->
+
+        <div class="back" id="game-box">
+            <!--        컴퓨터-->
+            <!--유저와 컴퓨터의 아이템이 back 밖으로 나가지 않도록 설정-->
+            <div class="playgame">
+                <div class="Computer">
+                    <img id="ComImg" width="100%" src="https://ifh.cc/g/mtGs0O.png."/>
+                </div>
+
+                <!--        유저-->
+                <div class="user" id="rsp_user">
+                    <div>
+                        <button onclick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})>
+                        </button>
+                        <button onclick="answer(${num_user[1]})" type="button"><img width=100px src=$({user_image[0]})>
+                        </button>
+                        <button onclick="answer(${num_user[2]})" type="button"><img width=100px src=$({user_image[0]})>
+                        </button>
+                    </div>
+                    <!--max-width=150px-->
+                    <h1 class="msg" id="Usertext"> 이겼다 </h1>
+                </div>
+            </div>
         </div>
-        <!--max-width=150px-->
-        <h1 class="msg" id="Usertext"> 이겼다 </h1>
-    </div>
-</div>
 
-<!--    https://ifh.cc/g/mtGs0O.png 가위-->
-<!--https://ifh.cc/g/1Y0LPy.png 바위-->
-<!--https://ifh.cc/g/Qqw7Qa.png 보-->
-    <div><button type="button" class="btn btn-danger">✋</button></div>
-
-<table class="table">
-    <thead>
-    <tr>
-        <td>현재시간 추가</td>
-        <td class="WinLose">승부</td>
-    </tr>
-    </thead>
-    <tbody id="names-q1">
-    </tbody>
-<table class="table" id="game-box2">
-    <thead>
-    <tr>
-        <td>현재시간 추가</td>
-        <td class="WinLose">승부</td>
-    </tr>
-    </thead>
-    <tbody id="names-q1">
-    </tbody>
-</table>
+        <!--    https://ifh.cc/g/mtGs0O.png 가위-->
+        <!--https://ifh.cc/g/1Y0LPy.png 바위-->
+        <!--https://ifh.cc/g/Qqw7Qa.png 보-->
 
 
-</body>
+        =======
+        <button type="button" class="btn btn-dark" onclick="rs_delete()">기록 초기화</button>
+
+        <table class="table" id="game-box2">
+            <thead>
+            <tr>
+                <td>회차</td>
+                <td>내가 낸 것</td>
+                <td>컴퓨터가 낸 것</td>
+                <td class="WinLose">결과</td>
+            </tr>
+            <tbody id="history-box">
+            <!-- 여기에 temp_html 이 붙음 -->
+            </tbody>
+            </thead>
+        </table>
+
+    </body>
 </html>
