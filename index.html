@@ -4,44 +4,137 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .ComputerImg{
+        /*배경*/
+        .back{
 
+            max-height: 2000px;
+            height: 95%;
+            max-width: 1000px;
+            width: 95%;
+
+            background-image: url("https://ifh.cc/g/PXK8Ap.jpg");
+            background-position: center;
+            background-size: cover;
+            margin: 50px auto 20px auto;
+
+        }
+        /*컴퓨터*/
+        .Computer{
             display: flex;
-            flex-direction: row;
+            /*flex-direction: column;*/
             justify-content: center;
-            align-items: center;
-
+            /*align-items: center;*/
             margin-top: 100px;
+            padding-top: 50px;
 
         }
-        .UserImg{
+        .user{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            margin-top: 70px;
+
+        }
+        /*유저*/
+        .User > button{
+
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
-
-            margin-top: 300px;
+            margin-top: 50px;
 
         }
+
+
+
+        /*메세지창*/
+        .msg {
+            color: white;
+            font-size: 100px;
+            margin-bottom: 50px;
+        }
+        .WinLose{
+            font-color:red;
+
+        }
+        .table{
+            width: 95%;
+            max-width: 1000px;
+            margin: auto;
+
+            text-align: center;
+
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        td,
+        th {
+            padding: 10px;
+            border: 1px solid;}
+
+
     </style>
+
+    <script>
+        let date = new Date();
+
+        function R1() {
+            $.ajax({
+                type: "GET",
+                url: "/db.py",
+                data: {},
+                success: function (response) {
+                    // let rows = response['']
+                    //
+                    // let temp_html = `<tr>
+                    //                     <td>현재시간 추가</td>
+                    //                     <td class="WinLose">승부</td>
+                    //                 </tr>`
+                    console.log(date)
+
+                }
+            })
+        }
+    </script>
 </head>
-<body>d
+
+<body>
+<!--    배경-->
+    <div class="back">
+<!--        컴퓨터-->
+        <div class="Computer">
+            <img id="ComImg" width="300" src="https://ifh.cc/g/mtGs0O.png."/>
+        </div>
+
+<!--        유저-->
+        <div class="user">
+            <div>
+                <button onclick="R1" type="button"><img width=100px src="https://ifh.cc/g/mtGs0O.png"></button>
+                <button onclick="R2"type="button"><img width=100px  src="https://ifh.cc/g/1Y0LPy.png"></button>
+                <button onclick="R3"type="button"><img width=100px  src="https://ifh.cc/g/Qqw7Qa.png"></button>
+            </div>
+<!--max-width=150px-->
+            <h1 class="msg" id="Usertext"> 이겼다 </h1>
+        </div>
+    </div>
+
 <!--    https://ifh.cc/g/mtGs0O.png 가위-->
 <!--https://ifh.cc/g/1Y0LPy.png 바위-->
 <!--https://ifh.cc/g/Qqw7Qa.png 보-->
-    <div><button type="button" class="btn btn-danger">✋</button></div>
 
-    <div class="ComputerImg">
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>현재시간 추가</td>
+                <td class="WinLose">승부</td>
+            </tr>
+        </thead>
+        <tbody id="names-q1">
+        </tbody>
+    </table>
 
-    </div>
-    <div class="UserImg" id="userbutton">
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
-        <button type="button" > <img width=100px src="..."></button>
-    </div>
-    <h1 id="msg">  이겼다 </h1>
 </body>
 </html>
