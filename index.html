@@ -16,10 +16,14 @@
         }
 
     </style>
+    // 시작할 때 바로 가위바위보 화면이 보여질 수 있도록
     $(document).ready(function () {
-    listing();
+    listing_user();
+    listing_com();
     });
     <script>
+        // 컴퓨터와 유저의 가위,바위,보 각각의 넘버 비교
+        // 이기면 p값에 2, 지면 p값에 3, 비기면 p값에 1을 부여
         function answer(num_com, num_user) {
             let win_count = 0;
             let p = 0;
@@ -48,26 +52,20 @@
                 }
             }
         }
-
+       // answer에서 win_count와 p값을 받고 @app.return_post로 전달
         function result(p,win_count) {
             $.ajax({
                 type: 'POST',
                 url: '/rsp_log',
-                data: {url_give: win_count},
+                data: {win_give: win_count,result_give:p},
                 success: function (response) {
                     alert(response['msg'])
-                    window.location.reload()
+                    //window.location.reload()
 
-                    if (p == 1) {
 
-                    } else if (p == 2) {
-
-                    } else if (p == 3) {
-
-                    }
                 });
         }
-
+     //db(rsp_user)에서 image와 넘버 번호 모음을 가져온다
             function listing_user() {
                 //$('#cards-box').empty()
                 $.ajax({
@@ -85,7 +83,7 @@
                     }
                 })
             }
-
+   //db(rsp_com)에서 image와 넘버 번호를 가져온다
             function listing_com() {
                 //$('#cards-box').empty()
                 $.ajax({
