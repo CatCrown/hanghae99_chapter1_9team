@@ -1,10 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>JQuery 연습하고 가기!</title>
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        div.question-box {
+            margin: 10px 0 20px 0;
+        }
+
+        div.question-box > div {
+            margin-top: 30px;
+        }
+
+        .con {
+            border: 1px solid black;
+        }
+
+    </style>
+
+    <script>
+
+        function history() {
+            $.ajax({
+                type: "GET",
+                url: "rsp/history",
+                data: {},
+                success: function (response) {
+                    let rows = response['history']
+                    for (let i = 0; i < rows.length; i++) {
+                        let num = rows[i]['num']
+                        let com = rows[i]['com']
+                        let user = rows[i]['user']
+                        let result = rows[i]['result']
+
+                        let temp_html = ``
+
+                        temp_html = `<div class="con" style="display:table; width:800px;">
+                                        <div style="display:table-row">
+
+                                            <!-- 몇회차 -->
+                                            <div class ="num" style="display:table-cell">${num}</div>
+                                            <!-- 유저가 낸 것 -->
+                                            <div class ="userdata" style="display:table-cell">${user}</div>
+                                            <!-- 컴퓨터가 낸 것 -->
+                                            <div class ="comdata" style="display:table-cell">${com}</div>
+                                            <!-- 결과 낸 것 -->
+                                            <div class ="resultdata" style="display:table-cell">${result}</div>
+                                        </div>
+                                     </div>`
+
+                        // 연승처리 어케하지
+                        // <p>${num} 연승중입니다!</p>
+
+                        $('#history_list').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function rsp(){
+            $.ajax({
+                type: "POST",
+                url: "/rsp/",
+                data: {num_give: num},
+                success: function (response) {
+                    // alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+
+    </script>
+
+
 </head>
 <body>
+<h1>JQuery+Ajax의 조합을 연습하자!</h1>
 
+<hr/>
+
+<div class="question-box">
+
+    <button onclick="testbtn1()">이건 테스트버튼</button>
+    <div>
+        <img id="img-rtan" width="300" src="http://spartacodingclub.shop/static/images/rtans/SpartaIcon11.png"/>
+        <h1 id="text-rtan">나는 ㅇㅇㅇ하는 르탄이!</h1>
+        ------------------------------- &nbsp
+    </div>
+
+    <div class="con" style="display:table; width:800px;">
+        <div style="display:table-row">
+            <div class ="A" style="display:table-cell">회차</div>
+            <div class ="A" style="display:table-cell">유저가 낸 것</div>
+            <div class ="B" style="display:table-cell">컴퓨터가 낸 것</div>
+            <div class ="C" style="display:table-cell">결과</div>
+        </div>
+    </div>
+    <div id="history_list">
+
+    </div>
+    <button onclick="btn1()">가위</button>
+    <button onclick="btn2()">바위</button>
+    <button onclick="btn3()">보</button>
+
+
+</div>
 </body>
 </html>
