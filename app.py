@@ -90,11 +90,11 @@ def rsp_get():
 
 
 # db(rsp_com)에서 image와 넘버 번호 리스트를 가져오고 랜덤으로 하나만 가져오기
-@app.route("/rsp/random", methods=["GET"])
-def rsp_get_rand():
-    rsp_list = list(db.rsp_com.find({}, {'_id': False}))
-    rsp_ran_list = random.choice(rsp_list)
-    return jsonify({'rsp_rand': rsp_ran_list})
+# @app.route("/rsp/random", methods=["GET"])
+# def rsp_get_rand():
+#     rsp_list = list(db.rsp_com.find({}, {'_id': False}))
+#     rsp_ran_list = random.choice(rsp_list)
+#     return jsonify({'rsp_rand': rsp_ran_list})
 
 
 # @app.route("/show", methods=["GET"])
