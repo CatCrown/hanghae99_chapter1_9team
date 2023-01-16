@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, jsonify, random
+from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
+
+import random
 
 from pymongo import MongoClient
 

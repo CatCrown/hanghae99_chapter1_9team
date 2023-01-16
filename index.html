@@ -113,23 +113,23 @@
         /*컴퓨터*/
         .Computer {
             display: flex;
-<<<<<<< HEAD
+
             /*flex-direction: column;*/
             justify-content: center;
             /*align-items: center;*/
             margin-top: 100px;
             padding-top: 50px;
-
-        <style type="text/css">
-        div.question-box {
-            margin: 10px 0 20px 0;
-=======
-            flex-direction: column;
-            /*컴퓨터사진크기 퍼센트*/
-            width: 30%;
-            margin-top: 10%;
->>>>>>> 0c43b4794e7d6210b360a4119b86e525b7589219
         }
+
+        /*<style type="text/css">*/
+        /*div.question-box {*/
+        /*    margin: 10px 0 20px 0;*/
+
+        /*    flex-direction: column;*/
+        /*    !*컴퓨터사진크기 퍼센트*!*/
+        /*    width: 30%;*/
+        /*    margin-top: 10%;*/
+
 
         .user {
             display: flex;
@@ -143,7 +143,15 @@
         /*유저*/
         .User > button {
 
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30%;
         }
+
+
+
         /*.UserImg {*/
         /*    display: flex;*/
         /*    flex-direction: row;*/
@@ -153,7 +161,7 @@
 
 
         /*    margin-top: 300px;*/
-        }
+        /*}*/
 
         /*메세지창*/
         .msg {
@@ -287,40 +295,22 @@
         }
 
         let date = new Date();
-<<<<<<< HEAD
 
-=======
 let temp_html=`
         <button onclick="answer(${num_user[0]})" type="button"><img width=100px; src=$({user_image[0]})></button>`
->>>>>>> 0c43b4794e7d6210b360a4119b86e525b7589219
+
     </script>
 
 </head>
 
-<<<<<<< HEAD
-<body>
-<!--    배경-->
-<div class="back">
-    <!--        컴퓨터-->
-    <div class="Computer" >
-        <img id="ComImg" width="300" src="https://ifh.cc/g/mtGs0O.png."/>
-    </div>
 
-    <!--        유저-->
-    <div class="user" id="rsp_user">
-        <div>
-            // <button onclick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})></button>
-            //<button onclick="answer(${num_user[1]})" type="button"><img width=100px src=$({user_image[0]})></button>
-            //<button onclick="answer(${num_user[2]})" type="button"><img width=100px src=$({user_image[0]})></button>
-=======
     <body>
+        <!--    게임시작하기버트-->
         <div class="start">
             <button onclick="open_game()" id="hide" type="button" class="btn btn-outline-danger">게임 시작하기!</button>
->>>>>>> 0c43b4794e7d6210b360a4119b86e525b7589219
         </div>
 
         <!--    배경-->
-
         <div class="back" id="game-box">
             <!--        컴퓨터-->
             <!--유저와 컴퓨터의 아이템이 back 밖으로 나가지 않도록 설정-->
@@ -332,11 +322,11 @@ let temp_html=`
                 <!--        유저-->
                 <div class="user" id="rsp_user">
                     <div>
-                        <button onclick="answer(${num_user[0]})" type="button"><img width=100px src=$({user_image[0]})>
+                        <button onclick="answer(${num_user[0]})" type="button"><img width=100px src="https://ifh.cc/g/mtGs0O.png">
                         </button>
-                        <button onclick="answer(${num_user[1]})" type="button"><img width=100px src=$({user_image[0]})>
+                        <button onclick="answer(${num_user[1]})" type="button"><img width=100px src="https://ifh.cc/g/1Y0LPy.png">
                         </button>
-                        <button onclick="answer(${num_user[2]})" type="button"><img width=100px src=$({user_image[0]})>
+                        <button onclick="answer(${num_user[2]})" type="button"><img width=100px src="https://ifh.cc/g/Qqw7Qa.png">
                         </button>
                     </div>
                     <!--max-width=150px-->
